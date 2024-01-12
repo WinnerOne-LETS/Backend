@@ -24,11 +24,13 @@ import java.util.Set;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name = "users")
 @NoArgsConstructor
 @Getter
+@Setter
 public class User extends SoftDeletableBaseEntity {
 
     @Id
