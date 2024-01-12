@@ -4,6 +4,7 @@ import com.yanolja_final.domain.user.dto.request.UpdateMyPageRequest;
 import com.yanolja_final.domain.user.dto.response.MyPageResponse;
 import com.yanolja_final.domain.user.service.MyPageService;
 import com.yanolja_final.global.util.ResponseDTO;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +16,11 @@ public class MyPageFacade {
 
     public ResponseDTO<MyPageResponse> updateUserInfo(UpdateMyPageRequest request, Long userId) {
         ResponseDTO<MyPageResponse> response = myPageService.updateUserInfo(request, userId);
+        return response;
+    }
+
+    public ResponseDTO<List<MyPageResponse>> getUserInfo() {
+        ResponseDTO<List<MyPageResponse>> response = myPageService.getUserInfo();
         return response;
     }
 }

@@ -6,6 +6,7 @@ import com.yanolja_final.domain.user.entity.User;
 import com.yanolja_final.domain.user.exception.UserNotFoundException;
 import com.yanolja_final.domain.user.repository.UserRepository;
 import com.yanolja_final.global.util.ResponseDTO;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +22,12 @@ public class MyPageService {
         request.updateSelectiveInfo(existingUser);
         User user = userRepository.save(existingUser);
         MyPageResponse response = MyPageResponse.fromUser(user);
+        return ResponseDTO.okWithData(response);
+    }
+
+    public ResponseDTO<List<MyPageResponse>> getUserInfo() {
+        List<User> users = userRepository.findAll();
+        List<MyPageResponse> response = MyPageResponse.fromUsers(users);
         return ResponseDTO.okWithData(response);
     }
 }

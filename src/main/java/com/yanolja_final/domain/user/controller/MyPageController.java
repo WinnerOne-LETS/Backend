@@ -6,9 +6,11 @@ import com.yanolja_final.domain.user.facade.MyPageFacade;
 import com.yanolja_final.global.config.argumentresolver.LoginedUserId;
 import com.yanolja_final.global.util.ResponseDTO;
 import jakarta.validation.Valid;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,6 +29,12 @@ public class MyPageController {
         @LoginedUserId Long userId
     ) {
         ResponseDTO<MyPageResponse> response = myPageFacade.updateUserInfo(request, userId);
+        return ResponseEntity.status(HttpStatus.valueOf(response.getCode())).body(response);
+    }
+
+    @GetMapping("/info")
+    public ResponseEntity<ResponseDTO<List<MyPageResponse>>> getUserInfo() {
+        ResponseDTO<List<MyPageResponse>> response = myPageFacade.getUserInfo();
         return ResponseEntity.status(HttpStatus.valueOf(response.getCode())).body(response);
     }
 }
