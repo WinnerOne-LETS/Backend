@@ -3,6 +3,7 @@ package com.yanolja_final.domain.user.controller;
 import com.yanolja_final.domain.user.dto.request.UpdateMyPageRequest;
 import com.yanolja_final.domain.user.dto.request.UpdatePasswordRequest;
 import com.yanolja_final.domain.user.dto.response.MyPageResponse;
+import com.yanolja_final.domain.user.dto.response.UpcomingPackageResponse;
 import com.yanolja_final.domain.user.facade.MyPageFacade;
 import com.yanolja_final.global.config.argumentresolver.LoginedUserId;
 import com.yanolja_final.global.util.ResponseDTO;
@@ -46,5 +47,11 @@ public class MyPageController {
     ) {
         myPageFacade.updatePassword(request, userId);
         return ResponseEntity.ok(ResponseDTO.ok());
+    }
+
+    @GetMapping("/upcoming-package")
+    public ResponseEntity<ResponseDTO<UpcomingPackageResponse>> getUpcomingPackage(@LoginedUserId Long userId) {
+        UpcomingPackageResponse response = myPageFacade.getUpcomingPackage(userId);
+        return ResponseEntity.ok(ResponseDTO.okWithData(response));
     }
 }
