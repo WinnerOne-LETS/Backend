@@ -13,6 +13,9 @@ import com.yanolja_final.domain.packages.exception.PackageDepartureOptionNotFoun
 import com.yanolja_final.domain.packages.exception.PackageNotFoundException;
 import com.yanolja_final.domain.packages.repository.PackageDepartureOptionRepository;
 import com.yanolja_final.domain.packages.repository.PackageRepository;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -106,4 +109,22 @@ public class PackageService {
             PackageDepartureOptionNotFoundException::new);
     }
 
+    public Long calculateDday(PackageDepartureOption option) {
+        LocalDate currentDate = LocalDate.now();
+        LocalDate departureDate = option.getDepartureDate();
+        return ChronoUnit.DAYS.between(currentDate, departureDate);
+    }
+
+    public String formattedDepartureDate(PackageDepartureOption option) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate departureDate = option.getDepartureDate();
+        return departureDate.format(formatter);
+    }
+
+    public String formattedEndDate(PackageDepartureOption option) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate departureDate = option.getDepartureDate();
+        LocalDate endDate = departureDate.plusDays(option.getTripDays() - 1);
+        return endDate.format(formatter);
+    }
 }
