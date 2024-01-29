@@ -12,6 +12,9 @@
 
 **프로젝트 기간**: 2023년 12월 04일 ~ 2024년 01월 29일
 
+**서비스**: https://winnerone.site
+
+
 ### 기술 스택
 
 - **언어**: Java 17
@@ -24,6 +27,8 @@
 ### API 명세
 ![image](https://github.com/yanolja-finalproject/Backend/assets/87019291/71805583-c1e2-4883-b761-473672e91455)
 ![image](https://github.com/yanolja-finalproject/Backend/assets/87019291/139938cb-d313-415e-b3f1-0aab5950857f)
+
+https://www.notion.so/API-8f9afb2bae01438ba77c63092f2a4dd1
 
 ### 서버 구조도
 ![image](https://github.com/yanolja-finalproject/Backend/assets/87019291/5f617311-8d6d-43c5-b292-0fe59177deee)
